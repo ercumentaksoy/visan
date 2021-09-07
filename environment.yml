@@ -1,0 +1,11 @@
+name: visan-build
+channels:
+  - stcorp-forge
+  - conda-forge
+dependencies:
+  - numpy
+  - cmake
+  - coda
+  - harp
+  - vtk
+  - wxpython
