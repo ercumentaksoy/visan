@@ -1,0 +1,534 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNIK1OTt08nSnn+1MgAWTeL",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ercumentaksoy/visan/blob/main/parlement2\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 7,
+      "metadata": {
+        "id": "9GZJktGpCN2B"
+      },
+      "outputs": [],
+      "source": [
+        "# Parlemento durumu."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "partiler = input(\"Enter political party names separated by comma: \").split(\",\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-NIXnp58CXNz",
+        "outputId": "44013ad1-0c32-4f6d-c8b6-a0f1ab997488"
+      },
+      "execution_count": 34,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter political party names separated by comma: AKP,MHP,CHP,İYİ Parti,DEVA,Memleket\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(partiler)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "khAZy_w8HH1w",
+        "outputId": "141ce456-f5bd-4981-b529-66d449cdb557"
+      },
+      "execution_count": 35,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['AKP', 'MHP', 'CHP', 'İYİ Parti', 'DEVA', 'Memleket']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ulke_geneli_oranlar = [float(i) for i in input(\"Enter vote ratios across country separated by comma: \").split(\",\")]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "sSkLBTg2CgQP",
+        "outputId": "d8d5a670-7d8a-4a67-a0e6-3aa06bc0b72d"
+      },
+      "execution_count": 36,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter vote ratios across country separated by comma: 35,8,34,12,2,6\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ilce_oy = [int(i) for i in input(\"Enter the vote numbers in the district separated by comma: \").split(\",\")]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2wD8qRaSF89C",
+        "outputId": "05d22b59-f62d-4f12-fc6b-3285ba37c426"
+      },
+      "execution_count": 37,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter the vote numbers in the district separated by comma: 100000,5000,110000,30000,3000,120000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ilce_temsilci_sayisi = [int(x) for x in input(\"Enter the number of representatives in each district (comma-separated): \").split(',')]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8ozEEmH6Eydc",
+        "outputId": "4a638471-15b2-4ea6-d126-966f9b1ee8be"
+      },
+      "execution_count": 38,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter the number of representatives in each district (comma-separated): 1\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ittifak_bilgileri = input(\"Enter alliance information separated by comma: \").split(\",\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fvNsPvTuDLds",
+        "outputId": "8fc9d015-be9b-4bb8-8e8e-4d641cff63be"
+      },
+      "execution_count": 39,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter alliance information separated by comma: AKP-MHP,CHP-İYİ Parti-DEVA,Memleket\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ortak_liste_bilgileri = input(\"Enter joint list information separated by comma: \").split(',')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yH-ECfsUDQas",
+        "outputId": "f61e1ca1-c93a-41cd-e5a4-461e7a0b7dca"
+      },
+      "execution_count": 40,
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "Enter joint list information separated by comma: DEVA->CHP\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ortak liste den gireceklerin"
+      ],
+      "metadata": {
+        "id": "vghO_VqWDYzV"
+      },
+      "execution_count": 41,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ilce_oy_islemleri = ilce_oy.copy()\n",
+        "for ortaklar in ortak_liste_bilgileri:\n",
+        "    ortak_parcalar = ortaklar.split('->')"
+      ],
+      "metadata": {
+        "id": "H1alM01aDam5"
+      },
+      "execution_count": 42,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "  # ortak_parcalar[1] ortak olunulan"
+      ],
+      "metadata": {
+        "id": "Q0FJiSGoDek2"
+      },
+      "execution_count": 43,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        " # ortak_parcalar[0] ortak olan"
+      ],
+      "metadata": {
+        "id": "Xpy6D8sbDhvp"
+      },
+      "execution_count": 44,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ilce_oy_islemleri[partiler.index(ortak_parcalar[1])] += ilce_oy_islemleri[partiler.index(ortak_parcalar[0])]"
+      ],
+      "metadata": {
+        "id": "QJMjyekxDku5"
+      },
+      "execution_count": 45,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ilce_oy_islemleri[partiler.index(ortak_parcalar[0])] = 0"
+      ],
+      "metadata": {
+        "id": "p0eN6PleDnd7"
+      },
+      "execution_count": 46,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Ulke geneli ittifak yapılmış ve"
+      ],
+      "metadata": {
+        "id": "7CcVPMLQDqGv"
+      },
+      "execution_count": 47,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ittifakın toplamı 7.0 üstünde ise"
+      ],
+      "metadata": {
+        "id": "lAH6nxf6Dslx"
+      },
+      "execution_count": 48,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# hesaplamaya dahil olunacak"
+      ],
+      "metadata": {
+        "id": "Rzd2PFUiDvOv"
+      },
+      "execution_count": 49,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# yoksa oyu 0 olarak atanacak"
+      ],
+      "metadata": {
+        "id": "tlnf49pYDwr9"
+      },
+      "execution_count": 50,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ittifaktaMi = [False] * len(partiler)"
+      ],
+      "metadata": {
+        "id": "Dje2-xytDz99"
+      },
+      "execution_count": 51,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for ittifaklar in ittifak_bilgileri:\n",
+        "    ittifak_toplam_oran = 0\n",
+        "    for ittifak in ittifaklar.split(('-')):\n",
+        "        ittifak_toplam_oran += ulke_geneli_oranlar[partiler.index(ittifak)]\n",
+        "        ittifaktaMi[partiler.index(ittifak)] = True"
+      ],
+      "metadata": {
+        "id": "qBdKsY1PD3ts"
+      },
+      "execution_count": 53,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "if ittifak_toplam_oran < 7:\n",
+        "        ilce_oy_islemleri[partiler.index(ittifak)] = 0"
+      ],
+      "metadata": {
+        "id": "L7zqrH7fHfkm"
+      },
+      "execution_count": 54,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Hiçbir ittifakta olmayıp oyları 7.0 altında olanlar için"
+      ],
+      "metadata": {
+        "id": "1iWH60R6Hsek"
+      },
+      "execution_count": 55,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# oyları 0 olarak ele alınacaktır."
+      ],
+      "metadata": {
+        "id": "jeQPv810HvlA"
+      },
+      "execution_count": 56,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for i in range(len(ulke_geneli_oranlar)):\n",
+        "    if ulke_geneli_oranlar[i] < 7 and ittifaktaMi[i] == False:\n",
+        "        ilce_oy_islemleri[i] = 0"
+      ],
+      "metadata": {
+        "id": "VK4mb5KGHzp8"
+      },
+      "execution_count": 57,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "atanan_temsilci_sayisi = 0"
+      ],
+      "metadata": {
+        "id": "nnLK7tQUH1BR"
+      },
+      "execution_count": 58,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "parti_vekil_listesi = {}"
+      ],
+      "metadata": {
+        "id": "jaaRHwHuH3H6"
+      },
+      "execution_count": 59,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# n = v/(s+1)"
+      ],
+      "metadata": {
+        "id": "mp3VThCvH6PF"
+      },
+      "execution_count": 62,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# v değeri değişken olmadığı için"
+      ],
+      "metadata": {
+        "id": "KUXnA2P8H7Kq"
+      },
+      "execution_count": 61,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# degismeyen_ilce_oy bilgisine ihtiyac duyulmaktakta."
+      ],
+      "metadata": {
+        "id": "XB9yvC2fH-g-"
+      },
+      "execution_count": 63,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "degismeyen_ilce_oy = ilce_oy_islemleri.copy()"
+      ],
+      "metadata": {
+        "id": "9zuT6SGJIApI"
+      },
+      "execution_count": 64,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Bölge temsilci sayısı tamamlanana kadar"
+      ],
+      "metadata": {
+        "id": "DU-2iXUGID9o"
+      },
+      "execution_count": 65,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# D’Hondt Method"
+      ],
+      "metadata": {
+        "id": "JLocLFxDIFqw"
+      },
+      "execution_count": 66,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "while atanan_temsilci_sayisi < sum(ilce_temsilci_sayisi):\n",
+        "    enyuksek = max(ilce_oy_islemleri)\n",
+        "    index = ilce_oy_islemleri.index(enyuksek)\n",
+        "    parti = partiler[index]\n",
+        "\n",
+        "    if parti in parti_vekil_listesi:\n",
+        "        parti_vekil_listesi[parti] += 1\n",
+        "    else:\n",
+        "        parti_vekil_listesi[parti] = 1\n",
+        "\n",
+        "    atanan_temsilci_sayisi += 1\n",
+        "\n",
+        "    ilce_oy_islemleri[index] = degismeyen_ilce_oy[index] / (parti_vekil_listesi[parti]+1)"
+      ],
+      "metadata": {
+        "id": "0srFoZZqMsEy"
+      },
+      "execution_count": 80,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Parti girdi sırasına göre ekrana yazdırılması."
+      ],
+      "metadata": {
+        "id": "-Fyx4m1xMy8S"
+      },
+      "execution_count": 81,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "for parti in partiler:\n",
+        "    if parti in parti_vekil_listesi:\n",
+        "        print(f\"{parti} -> {parti_vekil_listesi[parti]} representative(s).\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Fn72HDqKM1_8",
+        "outputId": "4676ccc6-296b-41f0-caaf-996ab9d81e9a"
+      },
+      "execution_count": 82,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "CHP -> 1 representative(s).\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
